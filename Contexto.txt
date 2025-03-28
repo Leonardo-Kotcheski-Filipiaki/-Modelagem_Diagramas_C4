@@ -1,0 +1,15 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(studentAlias, "Estudante", "O usuario estudante")
+Person(teacherAlias, "Professor", "O usuário professor/instrutor")
+Person(admAlias, "Administrador", "O usuário Admin")
+
+System_Boundary(c1, "") {
+    Container(web_app, "Sistema educacional", "Node.JS Express MVC EJS(Front end engine)\nHTML, CSS, Bootstrap 4.0, API connection", "Permite o usuário acessar a plataforma")
+}
+
+Rel(studentAlias, web_app, "Faz uso", "Método HTTP POST para realizar Login")
+Rel(teacherAlias, web_app, "Faz uso", "Método HTTP POST para realizar Login")
+Rel(admAlias, web_app, "Faz uso", "Método HTTP POST para realizar Login")
+@enduml
