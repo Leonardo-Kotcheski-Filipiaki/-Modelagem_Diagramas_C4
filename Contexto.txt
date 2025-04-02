@@ -6,7 +6,7 @@ Person(teacherAlias, "Professor", "O usuário professor/instrutor")
 Person(admAlias, "Administrador", "O usuário Admin")
 
 System_Boundary(c1, "") {
-    Container(web_app, "Sistema educacional", "Node.JS Express MVC EJS(Front end engine)\nHTML, CSS, Bootstrap 4.0, API connection", "Permite o usuário acessar a plataforma")
+    Container(web_app, "Sistema educacional", "Node.JS Express MVC EJS(Front end engine)\nHTML, CSS, Bootstrap 4.0, API connection", "A plataforma de ensino")
 }
 
 Rel(studentAlias, web_app, "Faz uso", "Método HTTP POST para realizar Login")
