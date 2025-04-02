@@ -1,0 +1,29 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Container(web_app, "Sistema educacional", "Node.JS Express MVC EJS(Front end engine)\nHTML, CSS, Bootstrap 4.0, API REST", "A plataforma de ensino")
+
+System_Boundary(c2, "") {
+    Container(aws_microservice, "Sistema Cloud", "AWS", "Sistema onde estão contidos os microsserviços da aplicação")
+    Container(microsservico_salas, "Microserviço salas", "Node.JS Express API REST", "Microsserviço voltado as salas de aula virtuais")
+    Container(microsservico_arquivos, "Microserviço Arquivos", "Node.JS Express API REST", "Microsserviço voltado a manipulação de arquivos (Upload, download, read, etc)")
+    Container(microsservico_login, "Microserviço Login", "Node.JS Express API REST", "Microsserviço voltado ao login do usuario no sistema")
+    Container(microsservico_feedback, "Microserviço Avaliação", "Node.JS Express API REST", "Microsserviço voltado a realização e registro de avalições da plataforma, tanto alunos quanto professores")
+    Container(microsservico_administrativo, "Microserviço administrativo", "Node.JS Express API REST", "Microsserviço voltado aos administradores do sistema e suas responsábilidades.")
+
+}
+
+Container(db, "Banco de dados", "MongoDB", "Banco de dados onde são guardadas as informações")
+Rel(web_app, aws_microservice, "Faz uso", "Sistema cloud | HTTPS connection")
+Rel(aws_microservice, microsservico_salas, "Uso", "Acesso as salas e suas ações")
+Rel(aws_microservice, microsservico_arquivos, "Uso", "Acesso aos arquivos e suas ações")
+Rel(aws_microservice, microsservico_login, "Uso", "Acesso do usuario a plataforma.")
+Rel(aws_microservice, microsservico_feedback, "Uso", "Realização de feedbacks e avaliações")
+Rel(aws_microservice, microsservico_administrativo, "Uso", "Consulta e realização de serviços administrativos do sistema")
+
+Rel(microsservico_salas, db, "Uso", "Realiza as consultas necessárias")
+Rel(microsservico_arquivos, db, "Uso", "Realiza as consultas necessárias")
+Rel(microsservico_login, db, "Uso", "Realiza as consultas necessárias")
+Rel(microsservico_feedback, db, "Uso", "Realiza as consultas necessárias")
+Rel(microsservico_administrativo, db, "Uso", "Realiza as consultas necessárias")
+@enduml
